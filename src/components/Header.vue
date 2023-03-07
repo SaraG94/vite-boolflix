@@ -28,9 +28,10 @@ import store from '../store'
             }
           })
           .then((res)=>{
-            console.log(res);
-            console.log(res.data);
+            console.log(res.data.results);
             console.log(store.search)
+            this.store.films = res.data.results
+            console.log(this.store.films)
           })
       },
       searchFilm(){
