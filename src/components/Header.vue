@@ -5,7 +5,33 @@ import store from '../store'
   export default{
     data(){
       return{
+        store
+      }
+    },
+    computed:{
+      apiKey(){
+        return this.store.apiKey
+      },
+      apiFilm(){
+        return this.store.apiFilm
+      }
+    },
+    methods:{
+      callFilm(){
+        const search=this.store.search
+        const myApiFilm= this.apiFilm + this.apiKey
 
+        axios
+          
+          .get(myApiFilm)
+          .then((res)=>{
+            console.log(res);
+            console.log(res.data);
+          })
+      },
+      searchFilm(){
+        console.log('cerca film');
+        this.callFilm()
       }
     }
   }
@@ -22,7 +48,7 @@ import store from '../store'
           type="text" 
           placeholder="Nome film"
         >
-        <button class="search">Cerca</button>
+        <button class="search" @click="searchFilm()">Cerca</button>
       </div>
     </div>
   </header> 
