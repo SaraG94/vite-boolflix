@@ -14,6 +14,9 @@ import store from '../store'
       },
       apiFilm(){
         return this.store.apiFilm
+      },
+      films(){
+        return this.store.films
       }
     },
     methods:{
