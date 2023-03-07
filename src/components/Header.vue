@@ -22,11 +22,15 @@ import store from '../store'
         const myApiFilm= this.apiFilm + this.apiKey
 
         axios
-          
-          .get(myApiFilm)
+          .get(myApiFilm,{
+            params:{
+              query:store.search
+            }
+          })
           .then((res)=>{
             console.log(res);
             console.log(res.data);
+            console.log(store.search)
           })
       },
       searchFilm(){
@@ -47,6 +51,7 @@ import store from '../store'
           class="search"
           type="text" 
           placeholder="Nome film"
+          v-model="store.search" 
         >
         <button class="search" @click="searchFilm()">Cerca</button>
       </div>
