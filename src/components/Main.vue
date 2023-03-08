@@ -4,13 +4,19 @@
     export default{
         data(){
             return{
-            store
+            store,
             }
         },
         computed:{
             
             allFilms(){
             return this.store.films
+            }
+        },
+        methods:{
+            flags(film){
+                const country = film.original_language
+                const flag = `<img src='https://flagcdn.com/16x12/${{country}}.png' alt="paese">`
             }
         }
     }
@@ -32,6 +38,8 @@
                             <h3>{{film.original_title}}</h3>
                         </li>
                         <li>
+                            <img :src=flags(film) alt="paese">
+                            <!-- <img src='https://flagcdn.com/16x12/it.png' alt="paese"> -->
                             <p>{{film.original_language}}</p>
                         </li>
                         <li>
