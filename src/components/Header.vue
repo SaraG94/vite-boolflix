@@ -10,29 +10,26 @@ import store from '../store'
     },
     computed:{
       apiKey(){
-        return this.store.apiKey
+        return this.store.config.API_KEY
       },
       apiFilm(){
-        return this.store.apiFilm
-      },
-      films(){
-        return this.store.films
+        return this.store.config.URI_BASE
       }
     },
     methods:{
       callFilm(){
-        const search=this.store.search
-        const myApiFilm= this.apiFilm + this.apiKey
+        const myApiFilm= this.apiFilm +'/search/movie'
 
         axios
           .get(myApiFilm,{
             params:{
-              query:store.search
+              api_key:this.apiKey,
+              query:store.search,
+              languege:'it-IT'
             }
           })
           .then((res)=>{
-            console.log(res.data.results);
-            console.log(store.search)
+            console.log(res.data.results,store.search);
             this.store.films = res.data.results
             console.log(this.store.films)
           })
