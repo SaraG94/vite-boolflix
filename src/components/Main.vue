@@ -1,7 +1,11 @@
 <script>
     import store from '../store'
+    import CardsFilm from './CardsFilm.vue'
 
     export default{
+        components:{
+            CardsFilm
+        },
         data(){
             return{
             store,
@@ -28,7 +32,9 @@
 
         <ul class="album-films">
 
-            <li class="card-film" v-for="film in allFilms" :key="film.id">                
+            <CardsFilm v-for="film in allFilms" :key="film.id" :film="film"></CardsFilm>
+
+            <!-- <li class="card-film" v-for="film in allFilms" :key="film.id">                
                 <div class="card-descrition">
                     <ul class="card-text">
                         <li>
@@ -45,7 +51,7 @@
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li> -->
         </ul>     
     </div>
 </main> 
@@ -69,17 +75,17 @@
         }
     }
 
-    .card-film{
-        border: 1px solid papayawhip;
-        border-radius: 10px;
-        padding: 5px;
-    }
+    // .card-film{
+    //     border: 1px solid papayawhip;
+    //     border-radius: 10px;
+    //     padding: 5px;
+    // }
 
-    .card-text{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-    }
+    // .card-text{
+    //     display: flex;
+    //     flex-direction: column;
+    //     align-items: center;
+    //     gap: 20px;
+    // }
 
 </style>
