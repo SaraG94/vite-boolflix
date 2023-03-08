@@ -15,8 +15,8 @@
         },
         methods:{
             flags(film){
-                const country = film.original_language
-                const flag = `<img src='https://flagcdn.com/16x12/${{country}}.png' alt="paese">`
+                const country = 'https://flagcdn.com/16x12/'+ film.original_language + '.png'
+                return country
             }
         }
     }
@@ -39,7 +39,6 @@
                         </li>
                         <li>
                             <img :src=flags(film) alt="paese">
-                            <!-- <img src='https://flagcdn.com/16x12/it.png' alt="paese"> -->
                             <p>{{film.original_language}}</p>
                         </li>
                         <li>
