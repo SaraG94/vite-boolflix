@@ -17,6 +17,10 @@ import store from '../store'
       }
     },
     methods:{
+      searchFilm(){
+        console.log('cerca film');
+        this.callFilm()
+      },
       callFilm(){
         const myApiFilm= this.apiFilm +'/search/movie'
 
@@ -34,10 +38,6 @@ import store from '../store'
             console.log(this.store.films)
           })
       },
-      searchFilm(){
-        console.log('cerca film');
-        this.callFilm()
-      }
     }
   }
 </script>
@@ -51,7 +51,7 @@ import store from '../store'
         <input
           class="search"
           type="text" 
-          placeholder="Nome film"
+          placeholder="Nome film/serie"
           v-model="store.search" 
         >
         <button class="search" @click="searchFilm()">Cerca</button>
