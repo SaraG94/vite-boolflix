@@ -12,17 +12,18 @@ import store from '../store'
       apiKey(){
         return this.store.config.API_KEY
       },
-      apiFilm(){
+      apiUri(){
         return this.store.config.URI_BASE
       }
     },
     methods:{
-      searchFilm(){
+      searchFilmSeries(){
         console.log('cerca film');
         this.callFilm()
+        this.callSeries()
       },
       callFilm(){
-        const myApiFilm= this.apiFilm +'/search/movie'
+        const myApiFilm= this.apiUri +'/search/movie'
 
         axios
           .get(myApiFilm,{
@@ -38,6 +39,23 @@ import store from '../store'
             console.log(this.store.films)
           })
       },
+      callSeries(){
+        const myApiSeries= this.apiUri +'/search/tv'
+
+        axios
+          .get(myApiSeries,{
+            params:{
+              api_key:this.apiKey,
+              query:store.search,
+              languege:'it-IT'
+            }
+          })
+          .then((res)=>{
+            console.log(res.data.results,store.search,'serieTV');
+            this.store.series = res.data.results
+            console.log(this.store.series)
+          })
+      }
     }
   }
 </script>
@@ -54,7 +72,7 @@ import store from '../store'
           placeholder="Nome film/serie"
           v-model="store.search" 
         >
-        <button class="search" @click="searchFilm()">Cerca</button>
+        <button class="search" @click="searchFilmSeries()">Cerca</button>
       </div>
     </div>
   </header> 

@@ -34,24 +34,6 @@
 
             <CardsFilm v-for="film in allFilms" :key="film.id" :film="film"></CardsFilm>
 
-            <!-- <li class="card-film" v-for="film in allFilms" :key="film.id">                
-                <div class="card-descrition">
-                    <ul class="card-text">
-                        <li>
-                            <h2>{{film.title}}</h2>
-                        </li>
-                        <li>
-                            <h3>{{film.original_title}}</h3>
-                        </li>
-                        <li>
-                            <img :src=flags(film)>
-                        </li>
-                        <li>
-                            <p>{{film.vote_average}}</p>
-                        </li>
-                    </ul>
-                </div>
-            </li> -->
         </ul>     
     </div>
 </main> 
@@ -74,18 +56,4 @@
             padding: 40px 0;
         }
     }
-
-    // .card-film{
-    //     border: 1px solid papayawhip;
-    //     border-radius: 10px;
-    //     padding: 5px;
-    // }
-
-    // .card-text{
-    //     display: flex;
-    //     flex-direction: column;
-    //     align-items: center;
-    //     gap: 20px;
-    // }
-
 </style>
