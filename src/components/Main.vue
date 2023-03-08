@@ -1,7 +1,11 @@
 <script>
     import store from '../store'
+    import Cards from './Cards.vue'
 
     export default{
+        components:{
+            Cards 
+        },
         data(){
             return{
             store,
@@ -11,12 +15,6 @@
             
             allFilms(){
             return this.store.films
-            }
-        },
-        methods:{
-            flags(film){
-                const country = 'https://flagcdn.com/16x12/'+ film.original_language + '.png'
-                return country
             }
         }
     }
@@ -28,7 +26,8 @@
 
         <ul class="album-films">
 
-            <li class="card-film" v-for="film in allFilms" :key="film.id">                
+            <Cards v-for="film in allFilms" :key="film.id" :film="film"></Cards>
+            <!-- <li class="card-film" v-for="film in allFilms" :key="film.id">                
                 <div class="card-descrition">
                     <ul class="card-text">
                         <li>
@@ -38,15 +37,14 @@
                             <h3>{{film.original_title}}</h3>
                         </li>
                         <li>
-                            <img :src=flags(film) alt="paese">
-                            <p>{{film.original_language}}</p>
+                            <img :src=flags(film)>
                         </li>
                         <li>
                             <p>{{film.vote_average}}</p>
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li> -->
         </ul>     
     </div>
 </main> 
@@ -69,18 +67,4 @@
             padding: 40px 0;
         }
     }
-
-    .card-film{
-        border: 1px solid papayawhip;
-        border-radius: 10px;
-        padding: 5px;
-    }
-
-    .card-text{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-    }
-
 </style>
