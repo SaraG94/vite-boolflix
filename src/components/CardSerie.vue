@@ -34,7 +34,13 @@
         setInteger1To5(num){
             const vote=Math.round((num)/2)
             return vote
-        }
+        },
+        // createStar(num){
+        //     const vote=Math.round((num)/2)
+        //     for(let i=0; i=vote;i++){
+        //         `<font-awesome-icon icon="fa-regular fa-star"/>`
+        //     }
+        // }
     }
   }
 </script>
@@ -45,18 +51,26 @@
         <div class="card-descrition">
             <ul class="card-text">
                 <li class="title">
-                    <h2>{{serie.name}}</h2> 
+                    <p><strong>Titolo:</strong>{{serie.name}}</p>
                 </li>
                 <li class="original-title">
-                    <h3>{{serie.original_name}}</h3>
+                    <p><strong>Titolo originale:</strong>{{serie.original_name}}</p>
                 </li>
                 <li>
                     <img v-if="flags[serie.original_language]" :src="flags[serie.original_language]" width="30" alt="">
                     <p v-else>{{ serie.original_language }}</p>
                 </li>
                 <li class="stars">
-                    <p>{{setInteger1To5(serie.vote_average)}}</p> 
-                    <!-- <font-awesome-icon icon="fa-regular fa-star"/> -->
+                    <p>
+                        <strong>Voto:</strong>{{setInteger1To5(serie.vote_average)}}
+                        <span>
+                            <font-awesome-icon icon="fa-regular fa-star"/> 
+                            <font-awesome-icon icon="fa-regular fa-star"/>
+                            <font-awesome-icon icon="fa-regular fa-star"/>
+                            <font-awesome-icon icon="fa-regular fa-star"/>
+                            <font-awesome-icon icon="fa-regular fa-star"/> 
+                        </span>
+                    </p>
                 </li>
             </ul>
         </div>
@@ -66,16 +80,28 @@
 <style lang="scss" scoped>  
     .card{
         border: 1px solid papayawhip;
+        position: relative;
     }
     
     .card-descrition{
-        padding: 5px;
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: white;
+        background-color: #00000082;
+        padding: 10px 5px;
+        width: 100%;
+        height: 100%;
 
         .card-text{
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 10px;
         }
+    }
+    .card:hover .card-descrition{
+        display: block;
     }
 </style>
