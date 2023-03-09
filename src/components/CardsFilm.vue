@@ -49,10 +49,10 @@
                 </li>
                 <li>
                     <img v-if="flags[film.original_language ]" :src="flags[film.original_language]" width="30" alt="">
-                    <p v-else>{{ film.original_language  }}</p>
+                    <p v-else>{{ film.original_language }}</p>
                 </li>
                 <li class="stars">
-                    <p>{{Math.floor(film.vote_average)}}</p>
+                    <p>{{Math.round(film.vote_average)}}</p>
                 </li>
             </ul>
         </div>

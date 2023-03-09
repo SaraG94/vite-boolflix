@@ -51,7 +51,7 @@
                     <p v-else>{{ serie.original_language }}</p>
                 </li>
                 <li class="stars">
-                   <p>{{Math.floor(serie.vote_average)}}</p> 
+                   <p>{{Math.round(serie.vote_average)}}</p> 
                 </li>
             </ul>
         </div>
