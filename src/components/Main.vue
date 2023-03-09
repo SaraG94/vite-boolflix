@@ -16,7 +16,7 @@
         computed:{
             
             allFilms(){
-            return this.store.films
+                return this.store.films
             },
             allSeries(){
                 return this.store.series

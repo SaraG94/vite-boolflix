@@ -37,6 +37,8 @@ import store from '../store'
             console.log(res.data.results,store.search);
             this.store.films = res.data.results
             console.log(this.store.films)
+          }).catch(()=>{
+            this.store.films = []
           })
       },
       callSeries(){
@@ -54,6 +56,8 @@ import store from '../store'
             console.log(res.data.results,store.search,'serieTV');
             this.store.series = res.data.results
             console.log(this.store.series)
+          }).catch(()=>{
+            this.store.series = []
           })
       }
     }

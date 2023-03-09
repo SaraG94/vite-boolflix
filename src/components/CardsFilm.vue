@@ -12,17 +12,30 @@
         }
     },
     methods:{
-        flags(film){
-            const country = 'https://flagcdn.com/16x12/'+ film.original_language + '.png'
-            return country
+        flags(flagName){
+
+            switch(flagName){
+                case ('en'):
+                    return('https://flagcdn.com/32x24/gb.png')
+                case ('uk'):
+                    return('https://flagcdn.com/32x24/ua.png')
+                case ('te'):
+                    return('https://flagcdn.com/32x24/in.png')
+                case ('ja'):
+                    return('https://flagcdn.com/32x24/jp.png')
+                case ('da'):
+                    return('https://flagcdn.com/32x24/de.png')
+                default:
+                    const country = 'https://flagcdn.com/32x24/'+ flagName + '.png'
+                    return country
+            }
         }
     }
   }
 </script>
 
 <template>
-    <li class="card-film">
-                        
+    <li class="card-film">                
         <div class="card-descrition">
             <ul class="card-text">
                 <li class="title">
@@ -31,8 +44,9 @@
                 <li class="original-title">
                     <h3>{{film.original_title}}</h3>
                 </li>
+                
                 <li class="flag">
-                    <img :src=flags(film)>
+                    <img :src=flags(film.original_language)>
                 </li>
                 <li class="stars">
                     <p>{{film.vote_average}}</p>
