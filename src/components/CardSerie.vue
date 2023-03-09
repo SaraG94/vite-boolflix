@@ -1,4 +1,5 @@
 <script>
+  import store from '../store'
   export default{
     props:{
       serie:{
@@ -8,6 +9,12 @@
     },
     data(){
         return{
+            store
+        }
+    },
+    computed:{
+        imgBase(){
+            return this.store.imgConfig.URL_BASE
         }
     },
     methods:{
@@ -27,13 +34,18 @@
                     const country = 'https://flagcdn.com/32x24/'+ flagName + '.png'
                     return country
             }
+        },
+        setPoster(currentPoster){
+            const poster = this.imgBase +'w342'+ currentPoster;
+            return poster
         }
     }
   }
 </script>
 
 <template>
-    <li class="card">                
+    <li class="card"> 
+        <img :src=setPoster(serie.poster_path)>            
         <div class="card-descrition">
             <ul class="card-text">
                 <li class="title">
@@ -61,10 +73,11 @@
 </template>
 
 <style lang="scss" scoped>  
-    
     .card{
         border: 1px solid papayawhip;
-        border-radius: 10px;
+    }
+    
+    .card-descrition{
         padding: 5px;
 
         .card-text{

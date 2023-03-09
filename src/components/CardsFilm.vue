@@ -1,41 +1,52 @@
 <script>
-  export default{
-    props:{
-      film:{
-        type:Object,
-        required:true
-      }
-    },
-    data(){
-        return{
-
+    import store from '../store'
+    export default{
+        props:{
+        film:{
+            type:Object,
+            required:true
         }
-    },
-    methods:{
-        flags(flagName){
+        },
+        data(){
+            return{
+                store
+            }
+        },
+        computed:{
+            imgBase(){
+                return this.store.imgConfig.URL_BASE
+            }
+        },
+        methods:{
+            flags(flagName){
 
-            switch(flagName){
-                case ('en'):
-                    return('https://flagcdn.com/32x24/gb.png')
-                case ('uk'):
-                    return('https://flagcdn.com/32x24/ua.png')
-                case ('te'):
-                    return('https://flagcdn.com/32x24/in.png')
-                case ('ja'):
-                    return('https://flagcdn.com/32x24/jp.png')
-                case ('da'):
-                    return('https://flagcdn.com/32x24/de.png')
-                default:
-                    const country = 'https://flagcdn.com/32x24/'+ flagName + '.png'
-                    return country
+                switch(flagName){
+                    case ('en'):
+                        return('https://flagcdn.com/32x24/gb.png')
+                    case ('uk'):
+                        return('https://flagcdn.com/32x24/ua.png')
+                    case ('te'):
+                        return('https://flagcdn.com/32x24/in.png')
+                    case ('ja'):
+                        return('https://flagcdn.com/32x24/jp.png')
+                    case ('da'):
+                        return('https://flagcdn.com/32x24/de.png')
+                    default:
+                        const country = 'https://flagcdn.com/32x24/'+ flagName + '.png'
+                        return country
+                }
+            },
+            setPoster(currentPoster){
+                const poster = this.imgBase +'w342'+ currentPoster;
+                return poster
             }
         }
     }
-  }
 </script>
 
 <template>
-    <li class="card-film">                
+    <li class="card-film">
+        <img :src=setPoster(film.poster_path)>                        
         <div class="card-descrition">
             <ul class="card-text">
                 <li class="title">
@@ -59,7 +70,8 @@
 <style lang="scss" scoped>  
     .card-film{
         border: 1px solid papayawhip;
-        border-radius: 10px;
+    }
+    .card-descrition{
         padding: 5px;
 
         .card-text{
