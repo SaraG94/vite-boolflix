@@ -52,7 +52,7 @@
                     <p v-else>{{ film.original_language  }}</p>
                 </li>
                 <li class="stars">
-                    <p>{{film.vote_average}}</p>
+                    <p>{{Math.floor(film.vote_average)}}</p>
                 </li>
             </ul>
         </div>

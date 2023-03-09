@@ -30,7 +30,7 @@
         setPoster(currentPoster){
             const poster = this.imgBase +'w342'+ currentPoster;
             return poster
-        }
+        },
     }
   }
 </script>
@@ -51,7 +51,7 @@
                     <p v-else>{{ serie.original_language }}</p>
                 </li>
                 <li class="stars">
-                   <p>{{serie.vote_average}}</p> 
+                   <p>{{Math.floor(serie.vote_average)}}</p> 
                 </li>
             </ul>
         </div>
