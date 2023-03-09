@@ -9,7 +9,15 @@
         },
         data(){
             return{
-                store
+                store,
+                flags:{
+                    it:'/it.png',
+                    uk:'/en.png',
+                    en:'/en.png',
+                    fr:'/fr.png',
+                    ja:'/ja.png',
+                    da:'/de.png'
+                }
             }
         },
         computed:{
@@ -18,24 +26,7 @@
             }
         },
         methods:{
-            flags(flagName){
-
-                switch(flagName){
-                    case ('en'):
-                        return('https://flagcdn.com/32x24/gb.png')
-                    case ('uk'):
-                        return('https://flagcdn.com/32x24/ua.png')
-                    case ('te'):
-                        return('https://flagcdn.com/32x24/in.png')
-                    case ('ja'):
-                        return('https://flagcdn.com/32x24/jp.png')
-                    case ('da'):
-                        return('https://flagcdn.com/32x24/de.png')
-                    default:
-                        const country = 'https://flagcdn.com/32x24/'+ flagName + '.png'
-                        return country
-                }
-            },
+ 
             setPoster(currentPoster){
                 const poster = this.imgBase +'w342'+ currentPoster;
                 return poster
@@ -46,7 +37,8 @@
 
 <template>
     <li class="card-film">
-        <img :src=setPoster(film.poster_path)>                        
+        <img :src=setPoster(film.poster_path)>       
+
         <div class="card-descrition">
             <ul class="card-text">
                 <li class="title">
@@ -55,9 +47,9 @@
                 <li class="original-title">
                     <h3>{{film.original_title}}</h3>
                 </li>
-                
-                <li class="flag">
-                    <img :src=flags(film.original_language)>
+                <li>
+                    <img v-if="flags[film.original_language ]" :src="flags[film.original_language]" width="30" alt="">
+                    <p v-else>{{ film.original_language  }}</p>
                 </li>
                 <li class="stars">
                     <p>{{film.vote_average}}</p>
