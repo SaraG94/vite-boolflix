@@ -87,15 +87,15 @@
         padding: 10px 5px;
         width: 100%;
         height: 100%;
+        
+        .text{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
     }
     .film:hover .descrition{
         display: block;
-    }
-
-    .text{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
     }
 </style>
