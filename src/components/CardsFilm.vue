@@ -30,6 +30,10 @@
             setPoster(currentPoster){
                 const poster = this.imgBase +'w342'+ currentPoster;
                 return poster
+            },
+            setInteger1To5(num){
+            const vote=Math.round((num)/2)
+            return vote
             }
         }
     }
@@ -52,7 +56,7 @@
                     <p v-else>{{ film.original_language }}</p>
                 </li>
                 <li class="stars">
-                    <p>{{Math.round((film.vote_average)/2)}}</p>
+                    <p>{{setInteger1To5(film.vote_average)}}</p>
                 </li>
             </ul>
         </div>

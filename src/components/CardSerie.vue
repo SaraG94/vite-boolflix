@@ -31,6 +31,10 @@
             const poster = this.imgBase +'w342'+ currentPoster;
             return poster
         },
+        setInteger1To5(num){
+            const vote=Math.round((num)/2)
+            return vote
+        }
     }
   }
 </script>
@@ -51,7 +55,8 @@
                     <p v-else>{{ serie.original_language }}</p>
                 </li>
                 <li class="stars">
-                   <p>{{Math.round((serie.vote_average)/2)}}</p> 
+                    <p>{{setInteger1To5(serie.vote_average)}}</p> 
+                    <!-- <font-awesome-icon icon="fa-regular fa-star"/> -->
                 </li>
             </ul>
         </div>
