@@ -63,6 +63,9 @@
                         <font-awesome-icon v-for="n in 5-convertedVote" :key="n" icon="fa-regular fa-star"/>      
                     </p>
                 </li>
+                <li>
+                    <p><strong>Trama:</strong>{{ serie.overview }}</p>
+                </li>
             </ul>
         </div>
     </li>
@@ -90,6 +93,7 @@
         padding: 10px 5px;
         width: 100%;
         height: 100%;
+        overflow-y: scroll;
 
         .card-text{
             display: flex;
@@ -97,6 +101,10 @@
             align-items: center;
             font-size: 15px;
         }
+    }
+
+    .card-descrition::-webkit-scrollbar{
+        display: none;
     }
     .card:hover .card-descrition{
         display: block;

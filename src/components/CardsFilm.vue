@@ -64,6 +64,9 @@
                         <font-awesome-icon v-for="n in 5-convertedVote" :key="n" icon="fa-regular fa-star"/>      
                     </p>
                 </li>
+                <li>
+                    <p><strong>Trama:</strong>{{ film.overview }}</p>
+                </li>
             </ul>
         </div>
     </li>
@@ -90,6 +93,7 @@
         padding: 10px 5px;
         width: 100%;
         height: 100%;
+        overflow-y: scroll;
         
         .text{
             display: flex;
@@ -98,6 +102,10 @@
             font-size: 15px;
         }
     }
+    .descrition::-webkit-scrollbar{
+        display:none;
+    }
+
     .film:hover .descrition{
         display: block;
     }
