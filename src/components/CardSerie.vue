@@ -17,20 +17,20 @@
                 fr:'/fr.png',
                 ja:'/ja.png',
                 da:'/de.png'
-            }
+            },
+            convertedVote:this.setInteger1To5(this.serie.vote_average)
         }
     },
     computed:{
         imgBase(){
             return this.store.imgConfig.URL_BASE
+        },
+        poster(){
+            return this.imgBase +'w342'+ this.serie.poster_path
         }
     },
     methods:{
- 
-        setPoster(currentPoster){
-            const poster = this.imgBase +'w342'+ currentPoster;
-            return poster
-        },
+
         setInteger1To5(num){
             const vote=Math.round((num)/2)
             return vote
@@ -47,7 +47,7 @@
 
 <template>
     <li class="card"> 
-        <img :src=setPoster(serie.poster_path)>            
+        <img :src=poster>            
         <div class="card-descrition">
             <ul class="card-text">
                 <li class="title">
@@ -62,14 +62,9 @@
                 </li>
                 <li class="stars">
                     <p>
-                        <strong>Voto:</strong>{{setInteger1To5(serie.vote_average)}}
-                        <span>
-                            <font-awesome-icon icon="fa-regular fa-star"/> 
-                            <font-awesome-icon icon="fa-regular fa-star"/>
-                            <font-awesome-icon icon="fa-regular fa-star"/>
-                            <font-awesome-icon icon="fa-regular fa-star"/>
-                            <font-awesome-icon icon="fa-regular fa-star"/> 
-                        </span>
+                        <strong>Voto:</strong>
+                        <font-awesome-icon v-for="n in convertedVote" :key="n" class="yellow-star" icon="fa-solid fa-star"/> 
+                        <font-awesome-icon v-for="n in 5-convertedVote" :key="n" icon="fa-regular fa-star"/>      
                     </p>
                 </li>
             </ul>
