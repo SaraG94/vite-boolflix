@@ -26,7 +26,7 @@
                 return this.store.imgConfig.URL_BASE
             },
             poster(){
-                return this.imgBase +'w342'+ this.film.poster_path
+                return this.film.poster_path ? this.imgBase +'w342'+ this.film.poster_path :null
             }
         },
         methods:{
@@ -41,15 +41,16 @@
 
 <template>
     <li class="film">
-        <img :src=poster>       
+        <img v-if="this.film.poster_path" class="poster" :src=poster alt="">  
+        <img v-else class="poster" src="/poster-placeholder.jpg" alt="">     
 
         <div class="descrition">
             <ul class="text">
                 <li class="title">
-                    <p><strong>Titolo:</strong>{{film.title}}</p>
+                    <p><strong>Titolo: </strong>{{film.title}}</p>
                 </li>
                 <li class="original-title">
-                    <p><strong>Titolo originale:</strong>{{film.original_title}}</p>
+                    <p><strong>Titolo originale: </strong>{{film.original_title}}</p>
                 </li>
                 <li>
                     <img v-if="flags[film.original_language ]" :src="flags[film.original_language]" width="30" alt="">
@@ -57,7 +58,7 @@
                 </li>
                 <li class="stars">
                     <p>
-                        <strong>Voto:</strong>
+                        <strong>Voto: </strong>
                         
                         <font-awesome-icon v-for="n in convertedVote" :key="n" class="yellow-star" icon="fa-solid fa-star"/> 
                         <font-awesome-icon v-for="n in 5-convertedVote" :key="n" icon="fa-regular fa-star"/>      
@@ -72,6 +73,12 @@
     .film{
         border: 1px solid papayawhip;
         position:relative;
+
+        img.poster{
+            aspect-ratio: 1/1.5;
+            object-fit: cover;
+            object-position: center;
+        } 
     }
     .descrition{
         display: none;
@@ -88,7 +95,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            font-size: 15px;
         }
     }
     .film:hover .descrition{

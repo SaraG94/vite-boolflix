@@ -26,7 +26,7 @@
             return this.store.imgConfig.URL_BASE
         },
         poster(){
-            return this.imgBase +'w342'+ this.serie.poster_path
+            return this.serie.poster_path ? this.imgBase +'w342'+ this.serie.poster_path :null
         }
     },
     methods:{
@@ -34,27 +34,23 @@
         setInteger1To5(num){
             const vote=Math.round((num)/2)
             return vote
-        },
-        // createStar(num){
-        //     const vote=Math.round((num)/2)
-        //     for(let i=0; i=vote;i++){
-        //         `<font-awesome-icon icon="fa-regular fa-star"/>`
-        //     }
-        // }
+        }
     }
   }
 </script>
 
 <template>
     <li class="card"> 
-        <img :src=poster>            
+        <img v-if="this.serie.poster_path" class="poster" :src=poster alt="">  
+        <img v-else class="poster" src="/poster-placeholder.jpg" alt=""> 
+                  
         <div class="card-descrition">
             <ul class="card-text">
                 <li class="title">
-                    <p><strong>Titolo:</strong>{{serie.name}}</p>
+                    <p><strong>Titolo: </strong>{{serie.name}}</p>
                 </li>
                 <li class="original-title">
-                    <p><strong>Titolo originale:</strong>{{serie.original_name}}</p>
+                    <p><strong>Titolo originale: </strong>{{serie.original_name}}</p>
                 </li>
                 <li>
                     <img v-if="flags[serie.original_language]" :src="flags[serie.original_language]" width="30" alt="">
@@ -62,7 +58,7 @@
                 </li>
                 <li class="stars">
                     <p>
-                        <strong>Voto:</strong>
+                        <strong>Voto: </strong>
                         <font-awesome-icon v-for="n in convertedVote" :key="n" class="yellow-star" icon="fa-solid fa-star"/> 
                         <font-awesome-icon v-for="n in 5-convertedVote" :key="n" icon="fa-regular fa-star"/>      
                     </p>
@@ -76,6 +72,12 @@
     .card{
         border: 1px solid papayawhip;
         position: relative;
+
+        img.poster{
+            aspect-ratio: 1/1.5;
+            object-fit: cover;
+            object-position: center;
+        }
     }
     
     .card-descrition{
@@ -93,7 +95,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            font-size: 15px;
         }
     }
     .card:hover .card-descrition{
